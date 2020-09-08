@@ -1,0 +1,297 @@
+﻿@page
+@model Zero.Pages.Clients.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Client</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div class="form-group">
+                <label asp-for="Client.Project" class="control-label"></label>
+                <input asp-for="Client.Project" class="form-control" />
+                <span asp-validation-for="Client.Project" class="text-danger"></span>
+            </div>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Client.ID" />
+            <div class="form-group">
+                <label asp-for="Client.Name" class="control-label"></label>
+                <input asp-for="Client.Name" class="form-control" />
+                <span asp-validation-for="Client.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Client.Address" class="control-label"></label>
+                <input asp-for="Client.Address" class="form-control" />
+                <span asp-validation-for="Client.Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Client.Mobile" class="control-label"></label>
+                <input asp-for="Client.Mobile" class="form-control" />
+                <span asp-validation-for="Client.Mobile" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Client.Company" class="control-label"></label>
+                <input asp-for="Client.Company" class="form-control" />
+                <span asp-validation-for="Client.Company" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Client.Country" class="control-label"></label>
+                <select asp-for="Client.Country">
+                    <option value="">Select Country</option>
+                    <option>Afghanistan</option>
+                    <option>Albania</option>
+                    <option>Algeria</option>
+                    <option>American Samoa</option>
+                    <option>Andorra</option>
+                    <option>Angola</option>
+                    <option>Anguilla</option>
+                    <option>Antarctica</option>
+                    <option>Antigua And Barbuda</option>
+                    <option>Argentina</option>
+                    <option>Armenia</option>
+                    <option>Aruba</option>
+                    <option>Australia</option>
+                    <option>Austria</option>
+                    <option>Azerbaijan</option>
+                    <option>Bahamas</option>
+                    <option>Bahrain</option>
+                    <option>Bangladesh</option>
+                    <option>Barbados</option>
+                    <option>Belarus</option>
+                    <option>Belgium</option>
+                    <option>Belize</option>
+                    <option>Benin</option>
+                    <option>Bermuda</option>
+                    <option>Bhutan</option>
+                    <option>Bolivia</option>
+                    <option>Bosnia And Herzegowina</option>
+                    <option>Botswana</option>
+                    <option>Bouvet Island</option>
+                    <option>Brazil</option>
+                    <option>British Indian Ocean Territory</option>
+                    <option>Brunei Darussalam</option>
+                    <option>Bulgaria</option>
+                    <option>Burkina Faso</option>
+                    <option>Burundi</option>
+                    <option>Cambodia</option>
+                    <option>Cameroon</option>
+                    <option>Canada</option>
+                    <option>Cape Verde</option>
+                    <option>Cayman Islands</option>
+                    <option>Central African Republic</option>
+                    <option>Chad</option>
+                    <option>Chile</option>
+                    <option>China</option>
+                    <option>Christmas Island</option>
+                    <option>Cocos (Keeling) Islands</option>
+                    <option>Colombia</option>
+                    <option>Comoros</option>
+                    <option>Congo</option>
+                    <option>Cook Islands</option>
+                    <option>Costa Rica</option>
+                    <option>Cote D'Ivoire</option>
+                    <option>Croatia (Local Name: Hrvatska)</option>
+                    <option>Cuba</option>
+                    <option>Cyprus</option>
+                    <option>Czech Republic</option>
+                    <option>Denmark</option>
+                    <option>Djibouti</option>
+                    <option>Dominica</option>
+                    <option>Dominican Republic</option>
+                    <option>East Timor</option>
+                    <option>Ecuador</option>
+                    <option>Egypt</option>
+                    <option>El Salvador</option>
+                    <option>Equatorial Guinea</option>
+                    <option>Eritrea</option>
+                    <option>Estonia</option>
+                    <option>Ethiopia</option>
+                    <option>Falkland Islands (Malvinas)</option>
+                    <option>Faroe Islands</option>
+                    <option>Fiji</option>
+                    <option>Finland</option>
+                    <option>France</option>
+                    <option>French Guiana</option>
+                    <option>French Polynesia</option>
+                    <option>French Southern Territories</option>
+                    <option>Gabon</option>
+                    <option>Gambia</option>
+                    <option>Georgia</option>
+                    <option>Germany</option>
+                    <option>Ghana</option>
+                    <option>Gibraltar</option>
+                    <option>Greece</option>
+                    <option>Greenland</option>
+                    <option>Grenada</option>
+                    <option>Guadeloupe</option>
+                    <option>Guam</option>
+                    <option>Guatemala</option>
+                    <option>Guinea</option>
+                    <option>Guinea-Bissau</option>
+                    <option>Guyana</option>
+                    <option>Haiti</option>
+                    <option>Honduras</option>
+                    <option>Hong Kong</option>
+                    <option>Hungary</option>
+                    <option>Iceland</option>
+                    <option>India</option>
+                    <option>Indonesia</option>
+                    <option>Iran (Islamic Republic Of)</option>
+                    <option>Iraq</option>
+                    <option>Ireland</option>
+                    <option>Italy</option>
+                    <option>Jamaica</option>
+                    <option>Japan</option>
+                    <option>Jordan</option>
+                    <option>Kazakhstan</option>
+                    <option>Kenya</option>
+                    <option>Kiribati</option>
+                    <option>Korea, Dem People's Republic</option>
+                    <option>Korea, Republic Of</option>
+                    <option>Kuwait</option>
+                    <option>Kyrgyzstan</option>
+                    <option>Lao People'S Dem Republic</option>
+                    <option>Latvia</option>
+                    <option>Lebanon</option>
+                    <option>Lesotho</option>
+                    <option>Liberia</option>
+                    <option>Libyan Arab Jamahiriya</option>
+                    <option>Liechtenstein</option>
+                    <option>Lithuania</option>
+                    <option>Luxembourg</option>
+                    <option>Macau</option>
+                    <option>Macedonia</option>
+                    <option>Madagascar</option>
+                    <option>Malawi</option>
+                    <option>Malaysia</option>
+                    <option>Maldives</option>
+                    <option>Mali</option>
+                    <option>Malta</option>
+                    <option>Marshall Islands</option>
+                    <option>Martinique</option>
+                    <option>Mauritania</option>
+                    <option>Mauritius</option>
+                    <option>Mayotte</option>
+                    <option>Mexico</option>
+                    <option>Micronesia, Federated States</option>
+                    <option>Moldova, Republic Of</option>
+                    <option>Monaco</option>
+                    <option>Mongolia</option>
+                    <option>Montserrat</option>
+                    <option>Morocco</option>
+                    <option>Mozambique</option>
+                    <option>Myanmar</option>
+                    <option>Namibia</option>
+                    <option>Nauru</option>
+                    <option>Nepal</option>
+                    <option>Netherlands</option>
+                    <option>Netherlands Ant Illes</option>
+                    <option>New Caledonia</option>
+                    <option>New Zealand</option>
+                    <option>Nicaragua</option>
+                    <option>Niger</option>
+                    <option>Nigeria</option>
+                    <option>Niue</option>
+                    <option>Norfolk Island</option>
+                    <option>Northern Mariana Islands</option>
+                    <option>Norway</option>
+                    <option>Oman</option>
+                    <option>Pakistan</option>
+                    <option>Palau</option>
+                    <option>Palestine</option>
+                    <option>Panama</option>
+                    <option>Papua New Guinea</option>
+                    <option>Paraguay</option>
+                    <option>Peru</option>
+                    <option>Philippines</option>
+                    <option>Pitcairn</option>
+                    <option>Poland</option>
+                    <option>Portugal</option>
+                    <option>Puerto Rico</option>
+                    <option>Qatar</option>
+                    <option>Reunion</option>
+                    <option>Romania</option>
+                    <option>Russian Federation</option>
+                    <option>Rwanda</option>
+                    <option>Saint K Itts And Nevis</option>
+                    <option>Saint Lucia</option>
+                    <option>Saint Vincent, The Grenadines</option>
+                    <option>Samoa</option>
+                    <option>San Marino</option>
+                    <option>Sao Tome And Principe</option>
+                    <option>Saudi Arabia</option>
+                    <option>Senegal</option>
+                    <option>Seychelles</option>
+                    <option>Sierra Leone</option>
+                    <option>Singapore</option>
+                    <option>Slovakia (Slovak Republic)</option>
+                    <option>Slovenia</option>
+                    <option>Solomon Islands</option>
+                    <option>Somalia</option>
+                    <option>South Africa</option>
+                    <option>South Georgia , S Sandwich Is.</option>
+                    <option>Spain</option>
+                    <option>Sri Lanka</option>
+                    <option>St. Helena</option>
+                    <option>St. Pierre And Miquelon</option>
+                    <option>Sudan</option>
+                    <option>Suriname</option>
+                    <option>Svalbard, Jan Mayen Islands</option>
+                    <option>Sw Aziland</option>
+                    <option>Sweden</option>
+                    <option>Switzerland</option>
+                    <option>Syrian Arab Republic</option>
+                    <option>Taiwan</option>
+                    <option>Tajikistan</option>
+                    <option>Tanzania, United Republic Of</option>
+                    <option>Thailand</option>
+                    <option>Togo</option>
+                    <option>Tokelau</option>
+                    <option>Tonga</option>
+                    <option>Trinidad And Tobago</option>
+                    <option>Tunisia</option>
+                    <option>Turkey</option>
+                    <option>Turkmenistan</option>
+                    <option>Turks And Caicos Islands</option>
+                    <option>Tuvalu</option>
+                    <option>Uganda</option>
+                    <option>Ukraine</option>
+                    <option>United Arab Emirates</option>
+                    <option>United Kingdom</option>
+                    <option>United States</option>
+                    <option>United States Minor Is.</option>
+                    <option>Uruguay</option>
+                    <option>Uzbekistan</option>
+                    <option>Vanuatu</option>
+                    <option>Venezuela</option>
+                    <option>Viet Nam</option>
+                    <option>Virgin Islands (British)</option>
+                    <option>Virgin Islands (U.S.)</option>
+                    <option>Wallis And Futuna Islands</option>
+                    <option>Western Sahara</option>
+                    <option>Yemen</option>
+                    <option>Zaire</option>
+                    <option>Zambia</option>
+                    <option>Zimbabwe</option>
+                </select>
+                <span asp-validation-for="Client.Country" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
