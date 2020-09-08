@@ -1,0 +1,91 @@
+﻿@page
+@model Zero.Pages.Aug19Payrolls.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Aug19 Payroll</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Aug19Payroll.Employee.FullName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Aug19Payroll.Employee.FullName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Aug19Payroll.Employee.Position)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Aug19Payroll.Employee.Position)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Aug19Payroll.Employee.Salary)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Aug19Payroll.Employee.Salary)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Aug19Payroll.Employee.Allowance1)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Aug19Payroll.Employee.Allowance1)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Aug19Payroll.Employee.Allowance2)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Aug19Payroll.Employee.Allowance2)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Aug19Payroll.Employee.Allowance3)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Aug19Payroll.Employee.Allowance3)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Aug19Payroll.Deduction)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Aug19Payroll.Deduction)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Aug19Payroll.OvertimeHours)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Aug19Payroll.OvertimeHours)
+        </dd>
+        <dt class="col-sm-2">
+            Overtime Amount (AED)
+        </dt>
+        <dd class="col-sm-10">
+            @Model.OvertimeAmount
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Aug19Payroll.Bonus)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Aug19Payroll.Bonus)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Aug19Payroll.Total)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Aug19Payroll.Total)
+        </dd>
+    </dl>
+</div>
+<div>
+    @if ((await AuthorizationService.AuthorizeAsync(
+  User, Model.Aug19Payroll,
+  EmployeeOperations.Update)).Succeeded)
+    {
+        <a asp-page="./Edit" asp-route-id="@Model.Aug19Payroll.EmployeeID">Edit</a>
+        <text> | </text>
+    }
+    <a asp-page="./Index">Back to List</a>
+</div>
