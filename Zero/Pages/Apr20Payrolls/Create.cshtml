@@ -1,0 +1,49 @@
+﻿@page
+@model Zero.Pages.Apr20Payrolls.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Apr20Payroll</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Apr20Payroll.FullName" class="control-label"></label>
+                <select asp-for="Apr20Payroll.EmployeeID" class="form-control" asp-items="ViewBag.EmployeeID"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Apr20Payroll.Deduction" class="control-label"></label>
+                <input asp-for="Apr20Payroll.Deduction" class="form-control" />
+                <span asp-validation-for="Apr20Payroll.Deduction" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Apr20Payroll.OvertimeHours" class="control-label"></label>
+                <input asp-for="Apr20Payroll.OvertimeHours" class="form-control" />
+                <span asp-validation-for="Apr20Payroll.OvertimeHours" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Apr20Payroll.Bonus" class="control-label"></label>
+                <input asp-for="Apr20Payroll.Bonus" class="form-control" />
+                <span asp-validation-for="Apr20Payroll.Bonus" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
