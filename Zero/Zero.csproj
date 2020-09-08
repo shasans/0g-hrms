@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <UserSecretsId>aspnet-Zero-4B081A17-6218-484D-9823-9CDD40F08C4A</UserSecretsId>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Data\Migrations\20191029081204_all.cs" />
+    <Compile Remove="Data\Migrations\20191029081204_all.Designer.cs" />
+    <Compile Remove="Data\Migrations\20191029081444_alls.cs" />
+    <Compile Remove="Data\Migrations\20191029081444_alls.Designer.cs" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="FreeSpire.PDF" Version="5.10.0" />
+    <PackageReference Include="GemBox.Document" Version="31.0.0.1078" />
+    <PackageReference Include="GemBox.Spreadsheet" Version="45.0.0.1069" />
+    <PackageReference Include="GrapeCity.Documents.Layout" Version="3.0.0.415" />
+    <PackageReference Include="GrapeCity.Documents.Pdf" Version="3.0.0.415" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.4" />
+    <PackageReference Include="NPOI" Version="2.4.1" />
+    <PackageReference Include="Select.HtmlToPdf.NetCore" Version="19.2.0" />
+    <PackageReference Include="Syncfusion.DocIORenderer.Net.Core" Version="17.3.0.33" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="Pages\Mar20Payrolls\" />
+    <Folder Include="wwwroot\images\" />
+    <Folder Include="wwwroot\generated\" />
+    <Folder Include="wwwroot\uploads\" />
+  </ItemGroup>
+
+</Project>
