@@ -1,0 +1,38 @@
+﻿@page
+@model Zero.Pages.Payrolls.IndexModel
+@{
+    ViewData["Title"] = "Payrolls";
+    ViewData["Active"] = "Payrolls";
+}
+
+<h1>Payrolls</h1>
+
+@*< input type="button" class="btn btn-info" onclick='window.location.href = "@Url.Action("Index", "ReviewPendingApprovals", routeValues: null)"'/>
+
+    <form method="get">
+        <button type="submit" asp-page="/Employees">Click me to go to the About page</button>
+    </form>
+*@
+
+<form asp-page="./Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            2019:
+        </p>
+        <p>
+            <input type="submit" asp-page="/Jan19Payrolls/Index" value="Jan" /> <input type="submit" asp-page="/Feb19Payrolls/Index" value="Feb" /> <input type="submit" asp-page="/Mar19Payrolls/Index" value="Mar" />
+            <input type="submit" asp-page="/Apr19Payrolls/Index" value="Apr" /> <input type="submit" asp-page="/May19Payrolls/Index" value="May" /> <input type="submit" asp-page="/Jun19Payrolls/Index" value="Jun" />
+            <input type="submit" asp-page="/Jul19Payrolls/Index" value="Jul" /> <input type="submit" asp-page="/Aug19Payrolls/Index" value="Aug" /> <input type="submit" asp-page="/Sep19Payrolls/Index" value="Sep" />
+            <input type="submit" asp-page="/Oct19Payrolls/Index" value="Oct" /> <input type="submit" asp-page="/Nov19Payrolls/Index" value="Nov" /> <input type="submit" asp-page="/Dec19Payrolls/Index" value="Dec" />
+        </p>
+        <p>
+            2020:
+        </p>
+        <p>
+            <input type="submit" asp-page="/Jan20Payrolls/Index" value="Jan" /> <input type="submit" asp-page="/Feb20Payrolls/Index" value="Feb" /> <input type="submit" asp-page="/Mar20Payrolls/Index" value="Mar" />
+            <input type="submit" asp-page="/Apr20Payrolls/Index" value="Apr" /> <input type="submit" asp-page="/May20Payrolls/Index" value="May" /> <input type="submit" asp-page="/Jun20Payrolls/Index" value="Jun" />
+            <input type="submit" asp-page="/Jul20Payrolls/Index" value="Jul" /> <input type="submit" asp-page="/Aug20Payrolls/Index" value="Aug" /> <input type="submit" asp-page="/Sep20Payrolls/Index" value="Sep" />
+            <input type="submit" asp-page="/Oct20Payrolls/Index" value="Oct" /> <input type="submit" asp-page="/Nov20Payrolls/Index" value="Nov" /> <input type="submit" asp-page="/Dec20Payrolls/Index" value="Dec" />
+        </p>
+    </div>
+</form>
