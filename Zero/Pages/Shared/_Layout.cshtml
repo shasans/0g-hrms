@@ -1,0 +1,194 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Zero</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
+              crossorigin="anonymous"
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" />
+    </environment>
+    <link rel="stylesheet" href="~/css/site.css" />
+    @RenderSection("Styles", required: false);
+</head>
+<body>
+    <header>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <style>
+            .mynav_navbar {
+                overflow: hidden;
+                background-color: #fff;
+                font-family: Segoe UI,Roboto,Helvetica;
+                transition: all 0.5s ease;
+            }
+
+                .mynav_navbar a {
+                    float: left;
+                    font-size: 16px;
+                    color: #212529;
+                    text-align: center;
+                    padding: 14px 8px;
+                    text-decoration: none;
+                    border-bottom: 2px solid transparent;
+                }
+
+            .mynav_dropdown {
+                float: left;
+                overflow: hidden;
+            }
+
+                .mynav_dropdown .mynav_dropbtn {
+                    font-size: 16px;
+                    border: none;
+                    outline: none;
+                    color: #212529;
+                    text-align: center;
+                    padding: 14px 8px;
+                    background-color: inherit;
+                    font-family: inherit;
+                    margin: 0;
+                }
+
+                .mynav_navbar a:hover, .mynav_dropdown:hover .mynav_dropbtn {
+                    background-color: white;
+                    border-bottom: 2px solid mistyrose;
+                }
+
+                .mynav_navbar a.active, .mynav_dropdown .mynav_dropbtn a.active {
+                    background-color: white;
+                    border-bottom: 2px solid salmon;
+                }
+
+                .mynav_navbar button.active, .mynav_dropdown .mynav_dropbtn button.active {
+                    background-color: white;
+                    border-bottom: 2px solid salmon;
+                }
+
+            .mynav_dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: white;
+                min-width: 160px;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                z-index: 1;
+            }
+
+                .mynav_dropdown-content a {
+                    float: none;
+                    color: #212529;
+                    padding: 10px 8px;
+                    text-decoration: none;
+                    display: block;
+                    text-align: left;
+                }
+
+                    .mynav_dropdown-content a:hover {
+                        background-color: whitesmoke;
+                        border-bottom: 2px solid whitesmoke;
+                    }
+
+            .mynav_dropdown:hover .mynav_dropdown-content {
+                display: block;
+            }
+        </style>
+
+
+
+
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                @*<a class="navbar-brand" asp-area="" asp-page="/Index">Zero</a>*@
+                <a class="navbar-brand" asp-area="" asp-page="/Index"><img src="~/images/0g.png" width="105" height="55" /></a>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <partial name="_LoginPartial" />
+                    <ul class="navbar-nav nav-pills flex-grow-1">
+
+                        <div class="mynav_navbar">
+                            <a asp-area="" asp-page="/Index" id="Home"><img src="~/images/icons8-home-16.png" /> Home</a>
+                            <a asp-area="" asp-page="/Employees/Index" id="Employees"><img src="~/images/icons8-person-16.png" /> Employees</a>
+                            <a asp-area="" asp-page="/Payrolls/Index" id="Payrolls"><img src="~/images/icons8-paper-money-16.png" /> Payrolls</a>
+                            <a asp-area="" asp-page="/Clients/Index" id="Clients"><img src="~/images/icons8-handshake-16.png" /> Clients</a>
+                            <a asp-area="" asp-page="/Vendors/Index" id="Vendors"><img src="~/images/icons8-briefcase-16.png" /> Vendors</a>
+                            <div class="mynav_dropdown">
+                                <button class="mynav_dropbtn" id="Invoices">
+                                    <img src="~/images/icons8-contract-16.png" /> Invoices
+                                </button>
+                                <div class="mynav_dropdown-content">
+                                    <a asp-area="" asp-page="/PaymentInvoices/Index">Payment Invoices</a>
+                                    <a asp-area="" asp-page="/ReceiptInvoices/Index">Receipt Invoices</a>
+                                    <a asp-area="" asp-page="/Invoices/Create">Invoice Generator</a>
+                                </div>
+                            </div>
+                            <div class="mynav_dropdown" >
+                                <button class="mynav_dropbtn" id="Budgets">
+                                    <img src="~/images/icons8-coins-16.png" /> Budgets
+                                </button>
+                                <div class="mynav_dropdown-content">
+                                    <a asp-area="" asp-page="/PayrollBudgets/Index" >Payroll Budgets</a>
+                                    <a asp-area="" asp-page="/ExpenseBudgets/Index">Expense Budgets</a>
+                                    <a asp-area="" asp-page="/ContractBudgets/Index" >Contract Budgets</a>
+                                    <a asp-area="" asp-page="/ReceivingBudgets/Index" >Receiving Budgets</a>
+                                </div>
+                            </div>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <partial name="_CookieConsentPartial" />
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2019 - Zero Gravity Multimedia and IT Solutions - <a asp-area="" asp-page="/Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o">
+        </script>
+    </environment>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @RenderSection("Scripts", required: false)
+
+    @if (ViewData["Active"] != null)
+    {
+    <script type="text/javascript">document.getElementById("@ViewData["Active"]").classList.add("active")</script>
+    }
+
+</body>
+</html>
