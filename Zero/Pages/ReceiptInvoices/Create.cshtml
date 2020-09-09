@@ -1,0 +1,114 @@
+﻿@page
+@model Zero.Pages.ReceiptInvoices.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>ReceiptInvoice</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="ReceiptInvoice.RecieverType" class="control-label"></label>
+                <input asp-for="ReceiptInvoice.RecieverType" type="radio" value="Client" />Client
+                <input asp-for="ReceiptInvoice.RecieverType" type="radio" value="Vendor" />Vendor
+                <input asp-for="ReceiptInvoice.RecieverType" type="radio" value="Other" />Other
+                <span asp-validation-for="ReceiptInvoice.RecieverType" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group" id='client-list' style='display: none;'>
+                <label asp-for="ReceiptInvoice.Client" class="control-label"></label>
+                <select asp-for="ReceiptInvoice.ClientID" class="form-control" asp-items="@Model.RecieverNameSL">
+                    <option value="">-- Select Client --</option>
+                </select>
+                <span asp-validation-for="ReceiptInvoice.ClientID" class="text-danger"></span>
+            </div>
+
+            <div class="form-group" id='vendor-list' style='display: none;'>
+                <label asp-for="ReceiptInvoice.Vendor" class="control-label"></label>
+                <select asp-for="ReceiptInvoice.VendorID" class="form-control" asp-items="@Model.Reciever2NameSL">
+                    <option value="">-- Select Vendor --</option>
+                </select>
+                <span asp-validation-for="ReceiptInvoice.VendorID" class="text-danger"></span>
+            </div>
+
+            <div class="form-group" id='other-list' style='display: none;'>
+                <label asp-for="ReceiptInvoice.RecieverName" class="control-label"></label>
+                <input asp-for="ReceiptInvoice.RecieverName" class="form-control" />
+                <span asp-validation-for="ReceiptInvoice.RecieverName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ReceiptInvoice.Amount" class="control-label"></label>
+                <input asp-for="ReceiptInvoice.Amount" class="form-control" />
+                <span asp-validation-for="ReceiptInvoice.Amount" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ReceiptInvoice.PaymentType" class="control-label"></label>
+                <input type="radio" asp-for="ReceiptInvoice.PaymentType" value="Contract" />Contract
+                <input type="radio" asp-for="ReceiptInvoice.PaymentType" value="Expense" />Expense
+                <span asp-validation-for="ReceiptInvoice.PaymentType" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ReceiptInvoice.PaymentMethod" class="control-label"></label>
+                <input type="radio" asp-for="ReceiptInvoice.PaymentMethod" value="Check" />Check
+                <input type="radio" asp-for="ReceiptInvoice.PaymentMethod" value="Cash" />Cash
+                <span asp-validation-for="ReceiptInvoice.PaymentMethod" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ReceiptInvoice.ImageName" class="control-label"></label>
+                <input type="file" asp-for="Image" class="form-control" />
+                <span asp-validation-for="ReceiptInvoice.ImageName" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+
+    <script type="text/javascript">
+    $('input:radio').change(function () {
+
+        if ($(this).is(':checked') && $(this).val() == 'Client') {
+            $("#client-list").css("display", "block");
+            $("#vendor-list").css("display", "none");
+            $("#other-list").css("display", "none");
+
+        }
+        else if ($(this).is(':checked') && $(this).val() == 'Vendor'){
+            $("#vendor-list").css("display", "block");
+            $("#client-list").css("display", "none");
+            $("#other-list").css("display", "none");
+        }
+        else if ($(this).is(':checked') && $(this).val() == 'Other'){
+            $("#vendor-list").css("display", "none");
+            $("#client-list").css("display", "none");
+            $("#other-list").css("display", "block");
+        }
+
+    });
+
+    </script>
+
+}

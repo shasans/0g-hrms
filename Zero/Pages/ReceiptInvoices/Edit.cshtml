@@ -1,0 +1,65 @@
+﻿@page
+@model Zero.Pages.ReceiptInvoices.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Receipt Invoice</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ReceiptInvoice.ReceiptInvoiceID" />
+            <div class="form-group">
+                <label asp-for="ReceiptInvoice.RecieverType" class="control-label"></label>
+                <input asp-for="ReceiptInvoice.RecieverType" class="form-control" />
+                <span asp-validation-for="ReceiptInvoice.RecieverType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReceiptInvoice.RecieverName" class="control-label"></label>
+                <input asp-for="ReceiptInvoice.RecieverName" class="form-control" />
+                <span asp-validation-for="ReceiptInvoice.RecieverName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReceiptInvoice.ClientID" class="control-label"></label>
+                <select asp-for="ReceiptInvoice.ClientID" class="form-control" asp-items="ViewBag.ClientID"></select>
+                <span asp-validation-for="ReceiptInvoice.ClientID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReceiptInvoice.VendorID" class="control-label"></label>
+                <select asp-for="ReceiptInvoice.VendorID" class="form-control" asp-items="ViewBag.VendorID"></select>
+                <span asp-validation-for="ReceiptInvoice.VendorID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReceiptInvoice.Amount" class="control-label"></label>
+                <input asp-for="ReceiptInvoice.Amount" class="form-control" />
+                <span asp-validation-for="ReceiptInvoice.Amount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReceiptInvoice.PaymentType" class="control-label"></label>
+                <input asp-for="ReceiptInvoice.PaymentType" class="form-control" />
+                <span asp-validation-for="ReceiptInvoice.PaymentType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReceiptInvoice.ImageName" class="control-label"></label>
+                <input asp-for="ReceiptInvoice.ImageName" class="form-control" />
+                <span asp-validation-for="ReceiptInvoice.ImageName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
