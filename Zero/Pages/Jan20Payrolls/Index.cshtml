@@ -1,0 +1,146 @@
+﻿@page
+@model Zero.Pages.Jan20Payrolls.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    ViewData["Active"] = "Payrolls";
+}
+<a class="btn btn-default" asp-page="/Payrolls/Index">&larr; back</a>
+<h1>Payroll of January, 2020</h1>
+
+<p>
+    <a asp-page="Create">Add New Payroll</a> for an existing employee.
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Jan20Payroll[0].EmployeeID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Jan20Payroll[0].FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Jan20Payroll[0].Salary)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Jan20Payroll[0].Allowance1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Jan20Payroll[0].Allowance2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Jan20Payroll[0].Allowance3)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Jan20Payroll[0].Deduction)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Jan20Payroll[0].OvertimeHours)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Jan20Payroll[0].Bonus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Jan20Payroll[0].Total)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Jan20Payroll)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Employee.ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Employee.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Employee.Salary)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Employee.Allowance1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Employee.Allowance2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Employee.Allowance3)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Deduction)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OvertimeHours)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Bonus)
+                </td>
+                @{
+                    int CalcOvertime(int salary, int hours)
+                    {
+                        return ((salary / ((31 - 5) * 8)) * hours);
+                    }
+                }
+
+                @{
+                    int CalculateTotal(int salary, int a1, int a2, int a3, int deduction, int overtime, int bonus)
+                    {
+                        return (salary + a1 + a2 + a3 - deduction + overtime + bonus);
+                    }
+                }
+
+                @{
+                    item.Total = CalculateTotal(item.Employee.Salary, item.Employee.Allowance1, item.Employee.Allowance2, item.Employee.Allowance3, item.Deduction, CalcOvertime((item.Employee.Salary), (item.OvertimeHours)), item.Bonus); //.ToString("0.00")
+                }
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Total)
+                </td>
+
+
+
+                <td>
+                    @if ((await AuthorizationService.AuthorizeAsync(
+               User, item,
+               EmployeeOperations.Update)).Succeeded)
+                    {
+                        <a asp-page="./Edit" asp-route-id="@item.EmployeeID">Edit</a>
+                        <text> | </text>
+                    }
+
+                    <a asp-page="./Details" asp-route-id="@item.EmployeeID">Details</a>
+
+                    @if ((await AuthorizationService.AuthorizeAsync(
+               User, item,
+               EmployeeOperations.Delete)).Succeeded)
+                    {
+                        <text> | </text>
+                        <a asp-page="./Delete" asp-route-id="@item.EmployeeID">Delete</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+
+    <tfoot>
+        <tr>
+            <td colspan="9"><b>Total [AED]</b></td>
+            <td><b>@Model.Jan20Payroll.Sum(i => i.Total).ToString("0,0.00") </b></td>
+        </tr>
+    </tfoot>
+
+
+</table>
+
+<form method="post" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-md-8" style="padding-top:10px;">
+            <input type="submit" value="Export Excel" asp-page-handler="ExporttoExcel" />
+        </div>
+    </div>
+    <div id="divData"></div>
+</form>  
