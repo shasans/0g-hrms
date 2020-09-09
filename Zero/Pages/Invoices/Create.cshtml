@@ -1,0 +1,125 @@
+﻿@page
+@model Zero.Pages.Invoices.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+    ViewData["Active"] = "Invoices";
+    
+}
+
+<h1>Create</h1>
+
+<h4>Invoice</h4>
+<hr />
+<div class="row">
+    <form method="post">
+        <div class="col-md-6">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Invoice.Date" class="control-label"></label>
+                <input asp-for="Invoice.Date" class="form-control" />
+                <span asp-validation-for="Invoice.Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Invoice.Name" class="control-label"></label>
+                <input asp-for="Invoice.Name" class="form-control" />
+                <span asp-validation-for="Invoice.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Invoice.Project" class="control-label"></label>
+                <input asp-for="Invoice.Project" class="form-control" />
+                <span asp-validation-for="Invoice.Project" class="text-danger"></span>
+            </div>
+        </div>
+        @*
+            <div class="form-group">
+                <label asp-for="Invoice.Item1" class="control-label"></label>
+                <input asp-for="Invoice.Item1" class="form-control" />
+                <span asp-validation-for="Invoice.Item1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Invoice.Quantity1" class="control-label"></label>
+                <input asp-for="Invoice.Quantity1" class="form-control" />
+                <span asp-validation-for="Invoice.Quantity1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Invoice.Rate1" class="control-label"></label>
+                <input asp-for="Invoice.Rate1" class="form-control" />
+                <span asp-validation-for="Invoice.Rate1" class="text-danger"></span>
+            </div> *@
+
+        <div class="col-md-10">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Quantity</th>
+                        <th>Rate [AED]</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <input asp-for="Invoice.Item1" class="form-control" />
+
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <input asp-for="Invoice.Quantity1" class="form-control" />
+
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <input asp-for="Invoice.Rate1" class="form-control" />
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        @*   <tfoot>
+            <tr>
+                <td colspan="3"><b>Grand total:</b></td>
+                <td id="grandTotal">@Model.Invoice.GrandTotalText</td>
+            </tr>
+            </tfoot>
+            </table>
+
+        *@
+
+
+        <div style='display: none;'>
+            <h4>Output format:</h4>
+            <div class="form-check">
+                <input id="DOCX" name="SelectedFormat" type="radio" class="form-check-input" checked value="DOCX" />
+                <label for="DOCX" class="form-check-label">DOCX</label>
+            </div>
+
+        </div>
+
+        @* <div class="form-group">
+                <button type="submit" class="btn btn-default">Generate</button>
+            </div> *@
+
+
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <input type="submit" value="Generate" class="btn btn-primary" />
+            </div>
+        </div>
+    </form>
+</div>
+
+@*<div>
+        <a asp-page="Index">Back to List</a>
+    </div>*@
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
