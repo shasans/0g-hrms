@@ -1,0 +1,85 @@
+﻿@page
+@model Zero.Pages.ContractBudgets.IndexModel
+
+@{
+    ViewData["Title"] = "Contract Budgets";
+    ViewData["Active"] = "Budgets";
+}
+
+<h1>Contract Budgets</h1>
+
+<p>
+    <a asp-page="Create">Create New Contract Budget</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ContractBudget[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContractBudget[0].Amount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContractBudget[0].Remaining)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContractBudget[0].UploadDT)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.ContractBudget)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+
+                @{
+                    int? CalculateRemaining(int amount, int? contractsamount)
+                    {
+                        return (amount - contractsamount);
+                    }
+
+                    item.Remaining = CalculateRemaining(item.Amount, Model.ConTotal);
+                }
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Remaining)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UploadDT)
+                </td>
+
+                <td>
+                    @if ((await AuthorizationService.AuthorizeAsync(
+                    User, item,
+                    EmployeeOperations.Update)).Succeeded)
+                    {
+                    <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a>
+                    
+                    }
+
+                    @*<a asp-page="./Details" asp-route-id="@item.EmployeeID">Details</a>*@
+
+                    @if ((await AuthorizationService.AuthorizeAsync(
+                    User, item,
+                    EmployeeOperations.Delete)).Succeeded)
+                    {
+                        <text> | </text>
+                    <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+<p style="color:gray;"><i>(Note: If the remaining amount is not shown, please check the <a href="/ReceiptInvoices/Index">receipt invoices</a> page and try again.)</i></p>
+</div>
