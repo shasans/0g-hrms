@@ -1,0 +1,120 @@
+﻿@page
+@model Zero.Pages.PaymentInvoices.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+
+}
+
+
+<h1>Create</h1>
+
+<h4>PaymentInvoice</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" enctype="multipart/form-data">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+            @*  <div class="form-group">
+                    <label asp-for="PaymentInvoice.RecieverType" class="control-label"></label>
+                    <input asp-for="PaymentInvoice.RecieverType" type="radio" value="A" name='A' />Client
+                    <input asp-for="PaymentInvoice.RecieverType" type="radio" value="B" name='A' />Vendor
+                    <span asp-validation-for="PaymentInvoice.RecieverType" class="text-danger"></span>
+                </div>
+            *@
+
+            <div class="form-group">
+                <label asp-for="PaymentInvoice.RecieverType" class="control-label"></label>
+                <input asp-for="PaymentInvoice.RecieverType" type="radio" value="Client" />Client
+                <input asp-for="PaymentInvoice.RecieverType" type="radio" value="Vendor" />Vendor
+                <input asp-for="PaymentInvoice.RecieverType" type="radio" value="Other" />Other
+                <span asp-validation-for="PaymentInvoice.RecieverType" class="text-danger"></span>
+            </div>
+
+            <div class="form-group" id='client-list' style='display: none;'>
+                <label asp-for="PaymentInvoice.Client" class="control-label"></label>
+                <select asp-for="PaymentInvoice.ClientID" class="form-control" asp-items="@Model.RecieverNameSL">
+                    <option value="">-- Select Client --</option>
+                </select>
+                <span asp-validation-for="PaymentInvoice.ClientID" class="text-danger"></span>
+            </div>
+
+            <div class="form-group" id='vendor-list' style='display: none;'>
+                <label asp-for="PaymentInvoice.Vendor" class="control-label"></label>
+                <select asp-for="PaymentInvoice.VendorID" class="form-control" asp-items="@Model.Reciever2NameSL">
+                    <option value="">-- Select Vendor --</option>
+                </select>
+                <span asp-validation-for="PaymentInvoice.VendorID" class="text-danger"></span>
+            </div>
+
+            <div class="form-group" id='other-list' style='display: none;'>
+                <label asp-for="PaymentInvoice.RecieverName" class="control-label"></label>
+                <input asp-for="PaymentInvoice.RecieverName" class="form-control" />
+                <span asp-validation-for="PaymentInvoice.RecieverName" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="PaymentInvoice.BankAccount" class="control-label"></label>
+                <input asp-for="PaymentInvoice.BankAccount" class="form-control" />
+                <span asp-validation-for="PaymentInvoice.BankAccount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PaymentInvoice.Amount" class="control-label"></label>
+                <input asp-for="PaymentInvoice.Amount" class="form-control" />
+                <span asp-validation-for="PaymentInvoice.Amount" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="PaymentInvoice.ImageName" class="control-label"></label>
+                <input type="file" asp-for="Image" class="form-control" />
+                <span asp-validation-for="PaymentInvoice.ImageName" class="text-danger"></span>
+            </div>
+
+
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+
+    <script type="text/javascript">
+    $('input:radio').change(function () {
+
+        if ($(this).is(':checked') && $(this).val() == 'Client') {
+            $("#client-list").css("display", "block");
+            $("#vendor-list").css("display", "none");
+            $("#other-list").css("display", "none");
+        }
+        else if ($(this).is(':checked') && $(this).val() == 'Vendor'){
+            $("#vendor-list").css("display", "block");
+            $("#client-list").css("display", "none");
+            $("#other-list").css("display", "none");
+        }
+
+        else if ($(this).is(':checked') && $(this).val() == 'Other'){
+            $("#vendor-list").css("display", "none");
+            $("#client-list").css("display", "none");
+            $("#other-list").css("display", "block");
+        }
+
+    });
+
+    </script>
+
+
+}

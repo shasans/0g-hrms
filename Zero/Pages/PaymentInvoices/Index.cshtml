@@ -1,0 +1,99 @@
+﻿@page
+@model Zero.Pages.PaymentInvoices.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    ViewData["Active"] = "Invoices";
+}
+@*<a class="btn btn-default" asp-page="/Invoices/Index">&larr; back</a> *@
+<h1>Payment Invoices</h1>
+
+<p>
+    <a asp-page="Create">Create New Payment Invoice</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PaymentInvoice[0].PaymentInvoiceID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaymentInvoice[0].RecieverType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaymentInvoice[0].RecieverName)
+            </th>
+            @* <th>
+                    @Html.DisplayNameFor(model => model.PaymentInvoice[0].Vendor)
+                </th> *@
+            <th>
+                @Html.DisplayNameFor(model => model.PaymentInvoice[0].BankAccount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaymentInvoice[0].Amount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaymentInvoice[0].ImageName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaymentInvoice[0].UploadDT)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.PaymentInvoice)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaymentInvoiceID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RecieverType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Client.Name)
+                    @Html.DisplayFor(modelItem => item.Vendor.Name)
+                    @Html.DisplayFor(modelItem => item.RecieverName)
+                </td>
+                @*   <td>
+                        @Html.DisplayFor(modelItem => item.Vendor.Name)
+                    </td> *@
+                <td>
+                    @Html.DisplayFor(modelItem => item.BankAccount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td>
+                    <a href="~/uploads/@item.ImageName" target="_blank">View Attachment</a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UploadDT)
+                </td>
+                <td>
+                    @*  <a asp-page="./Edit" asp-route-id="@item.PaymentInvoiceID">Edit</a> |
+                        <a asp-page="./Details" asp-route-id="@item.PaymentInvoiceID">Details</a> | *@
+                    @*<a asp-page="./Delete" asp-route-id="@item.PaymentInvoiceID">Delete</a>*@
+
+                    @if ((await AuthorizationService.AuthorizeAsync(
+                User, item,
+                EmployeeOperations.Delete)).Succeeded)
+                    {
+                        <a asp-page="./Delete" asp-route-id="@item.PaymentInvoiceID">Delete</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+
+    <tfoot>
+        <tr>
+            <td colspan="5"><b>Total (AED)</b></td>
+            <td><b>@Model.PaymentInvoice.Sum(i => i.Amount).ToString("0,0.00") </b></td>
+        </tr>
+    </tfoot>
+
+</table>
+
+
