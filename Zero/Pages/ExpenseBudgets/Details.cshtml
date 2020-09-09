@@ -1,0 +1,37 @@
+﻿@page
+@model Zero.Pages.ExpenseBudgets.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>ExpenseBudget</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ExpenseBudget.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ExpenseBudget.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ExpenseBudget.Amount)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ExpenseBudget.Amount)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ExpenseBudget.Remaining)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ExpenseBudget.Remaining)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.ExpenseBudget.ID">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>
