@@ -1,0 +1,23 @@
+﻿@page
+@model Zero.Pages.PayrollBudgets.IndexModel
+@{
+    ViewData["Title"] = "Index";
+    ViewData["Active"] = "Budgets";
+}
+
+<h1>Payroll Budgets</h1>
+
+<form asp-page="./Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Select year:
+        </p>
+
+        <p>
+            <input type="submit" asp-page="/Payroll19Budgets/Index" value="2019" /> 
+        </p>
+        <p>
+            <input type="submit" asp-page="/Payroll20Budgets/Index" value="2020" /> 
+        </p>
+    </div>
+</form>
