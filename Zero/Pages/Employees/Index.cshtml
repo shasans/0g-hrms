@@ -1,0 +1,163 @@
+﻿@page
+@model Zero.Pages.Employees.IndexModel
+
+@{
+    ViewData["Title"] = "HR";
+    ViewData["Active"] = "Employees";
+}
+
+<h1>Employees</h1>
+
+<p>
+    <a asp-page="Create">Create New Employee</a>
+</p>
+
+
+<form asp-page="./Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Search Name:
+            <input type="text" name="SearchString" value="@Model.CurrentFilter" />
+            <input type="submit" value="Search" /> |
+            <a asp-page="./Index">Back to full List</a>
+        </p>
+    </div>
+</form>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee[0].ID)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Employee[0].FirstName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Employee[0].LastName)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Employee[0].FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee[0].Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee[0].Nationality)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee[0].DoB)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee[0].Grade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee[0].Position)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee[0].MaritalStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee[0].Salary)
+            </th>
+            <th>
+                A1
+            </th>
+            <th>
+                A2
+            </th>
+            <th>
+                A3
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee[0].HiringDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Employee)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastName)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nationality)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DoB)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Grade)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Position)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaritalStatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Salary)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Allowance1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Allowance2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Allowance3)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HiringDate)
+                </td>
+
+
+
+                <td>
+                    @* <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                        <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                        <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a> *@
+
+                    @if ((await AuthorizationService.AuthorizeAsync(
+                       User, item,
+                       EmployeeOperations.Update)).Succeeded)
+                    {
+                        <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a>
+                        <text> | </text>
+                    }
+
+                    <a asp-page="./Details" asp-route-id="@item.ID">Details</a>
+
+                    @if ((await AuthorizationService.AuthorizeAsync(
+                   User, item,
+                   EmployeeOperations.Delete)).Succeeded)
+                    {
+                        <text> | </text>
+                        <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                    }
+
+                </td>
+
+
+
+
+
+            </tr>
+        }
+    </tbody>
+</table>
