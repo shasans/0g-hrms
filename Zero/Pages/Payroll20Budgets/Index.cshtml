@@ -1,0 +1,433 @@
+﻿@page
+@model Zero.Pages.Payroll20Budgets.IndexModel
+
+@{
+    ViewData["Title"] = "Payroll Budget of 2020";
+    ViewData["Active"] = "Budgets";
+}
+
+<a class="btn btn-default" asp-page="/PayrollBudgets/Index">&larr; back</a>
+
+<h1>Payroll Budget of 2020</h1>
+
+<p>
+    <a asp-page="Create">Create New Payroll Budget</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Payroll20Budget[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Payroll20Budget[0].Amount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Payroll20Budget[0].Remaining)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Payroll20Budget[0].UploadDT)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Payroll20Budget)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                @*     @{
+                    int? CalculateRemaining(int amount, int? jan20total ,int? feb20total,int? mar20total,int? apr20total,int? may20total,int? jun20total,
+                    int? jul20total,int? aug20total,int? sep20total,int? oct20total,int? nov20total,int? dec20total)
+                    {
+                    return (amount - jan20total - feb20total - mar20total - apr20total - may20total - jun20total - jul20total - aug20total - sep20total - oct20total- nov20total - dec20total);
+                    }
+
+
+                    }
+
+                    <td>
+                        @CalculateRemaining(item.Amount, Model.Jan20Tot, Model.Feb20Tot , Model.Mar20Tot, Model.Apr20Tot, Model.May20Tot, Model.Jun20Tot, Model.Jul20Tot, Model.Aug20Tot, Model.Sep20Tot, Model.Oct20Tot, Model.Nov20Tot, Model.Dec20Tot)
+                    </td> *@
+
+
+                @{
+                    int? CalculateRemaining(int amount, int? jan20total)
+                    {
+                        return (amount - jan20total);
+                    }
+
+                    int? CalculateRemaining2(int amount, int? jan20total, int? feb20total)
+                    {
+                        return (amount - jan20total - feb20total);
+                    }
+                    int? CalculateRemaining3(int amount, int? jan20total, int? feb20total, int? mar20total)
+                    {
+                        return (amount - jan20total - feb20total - mar20total);
+                    }
+                    int? CalculateRemaining4(int amount, int? jan20total, int? feb20total, int? mar20total, int? apr20total)
+                    {
+                        return (amount - jan20total - feb20total - mar20total - apr20total);
+                    }
+                    int? CalculateRemaining5(int amount, int? jan20total, int? feb20total, int? mar20total, int? apr20total, int? may20total)
+                    {
+                        return (amount - jan20total - feb20total - mar20total - apr20total - may20total);
+                    }
+                    int? CalculateRemaining6(int amount, int? jan20total, int? feb20total, int? mar20total, int? apr20total, int? may20total, int? jun20total)
+                    {
+                        return (amount - jan20total - feb20total - mar20total - apr20total - may20total - jun20total);
+                    }
+                    int? CalculateRemaining7(int amount, int? jan20total, int? feb20total, int? mar20total, int? apr20total, int? may20total, int? jun20total,
+                    int? jul20total)
+                    {
+                        return (amount - jan20total - feb20total - mar20total - apr20total - may20total - jun20total - jul20total);
+                    }
+
+                    int? CalculateRemaining8(int amount, int? jan20total, int? feb20total, int? mar20total, int? apr20total, int? may20total, int? jun20total,
+                    int? jul20total, int? aug20total)
+                    {
+                        return (amount - jan20total - feb20total - mar20total - apr20total - may20total - jun20total - jul20total - aug20total);
+                    }
+                    int? CalculateRemaining9(int amount, int? jan20total, int? feb20total, int? mar20total, int? apr20total, int? may20total, int? jun20total,
+                    int? jul20total, int? aug20total, int? sep20total)
+                    {
+                        return (amount - jan20total - feb20total - mar20total - apr20total - may20total - jun20total - jul20total - aug20total - sep20total);
+                    }
+                    int? CalculateRemaining10(int amount, int? jan20total, int? feb20total, int? mar20total, int? apr20total, int? may20total, int? jun20total,
+                    int? jul20total, int? aug20total, int? sep20total, int? oct20total)
+                    {
+                        return (amount - jan20total - feb20total - mar20total - apr20total - may20total - jun20total - jul20total - aug20total - sep20total - oct20total);
+                    }
+                    int? CalculateRemaining11(int amount, int? jan20total, int? feb20total, int? mar20total, int? apr20total, int? may20total, int? jun20total,
+                    int? jul20total, int? aug20total, int? sep20total, int? oct20total, int? nov20total)
+                    {
+                        return (amount - jan20total - feb20total - mar20total - apr20total - may20total - jun20total - jul20total - aug20total - sep20total - oct20total - nov20total);
+                    }
+                    int? CalculateRemaining12(int amount, int? jan20total, int? feb20total, int? mar20total, int? apr20total, int? may20total, int? jun20total,
+                    int? jul20total, int? aug20total, int? sep20total, int? oct20total, int? nov20total, int? dec20total)
+                    {
+                        return (amount - jan20total - feb20total - mar20total - apr20total - may20total - jun20total - jul20total - aug20total - sep20total - oct20total - nov20total - dec20total);
+                    }
+                }
+
+                <td>
+                    <div id='jan-group' style='display: none;'>
+                        @CalculateRemaining(item.Amount, Model.Jan20Tot)
+                    </div>
+
+                    <div id='feb-group' style='display: none;'>
+                        @CalculateRemaining2(item.Amount, Model.Jan20Tot, Model.Feb20Tot)
+                    </div>
+
+                    <div id='mar-group' style='display: none;'>
+                        @CalculateRemaining3(item.Amount, Model.Jan20Tot, Model.Feb20Tot, Model.Mar20Tot)
+                    </div>
+                    <div id='apr-group' style='display: none;'>
+                        @CalculateRemaining4(item.Amount, Model.Jan20Tot, Model.Feb20Tot, Model.Mar20Tot, Model.Apr20Tot)
+                    </div>
+
+                    <div id='may-group' style='display: none;'>
+                        @CalculateRemaining5(item.Amount, Model.Jan20Tot, Model.Feb20Tot, Model.Mar20Tot, Model.Apr20Tot, Model.May20Tot)
+                    </div>
+                    <div id='jun-group' style='display: none;'>
+                        @CalculateRemaining6(item.Amount, Model.Jan20Tot, Model.Feb20Tot, Model.Mar20Tot, Model.Apr20Tot, Model.May20Tot, Model.Jun20Tot)
+                    </div>
+
+                    <div id='jul-group' style='display: none;'>
+                        @CalculateRemaining7(item.Amount, Model.Jan20Tot, Model.Feb20Tot, Model.Mar20Tot, Model.Apr20Tot, Model.May20Tot, Model.Jun20Tot, Model.Jul20Tot)
+                    </div>
+                    <div id='aug-group' style='display: none;'>
+                        @CalculateRemaining8(item.Amount, Model.Jan20Tot, Model.Feb20Tot, Model.Mar20Tot, Model.Apr20Tot, Model.May20Tot, Model.Jun20Tot, Model.Jul20Tot, Model.Aug20Tot)
+                    </div>
+
+                    <div id='sep-group' style='display: none;'>
+                        @CalculateRemaining9(item.Amount, Model.Jan20Tot, Model.Feb20Tot, Model.Mar20Tot, Model.Apr20Tot, Model.May20Tot, Model.Jun20Tot, Model.Jul20Tot, Model.Aug20Tot, Model.Sep20Tot)
+                    </div>
+                    <div id='oct-group' style='display: none;'>
+                        @CalculateRemaining10(item.Amount, Model.Jan20Tot, Model.Feb20Tot, Model.Mar20Tot, Model.Apr20Tot, Model.May20Tot, Model.Jun20Tot, Model.Jul20Tot, Model.Aug20Tot, Model.Sep20Tot, Model.Oct20Tot)
+                    </div>
+
+                    <div id='nov-group' style='display: none;'>
+                        @CalculateRemaining11(item.Amount, Model.Jan20Tot, Model.Feb20Tot, Model.Mar20Tot, Model.Apr20Tot, Model.May20Tot, Model.Jun20Tot, Model.Jul20Tot, Model.Aug20Tot, Model.Sep20Tot, Model.Oct20Tot, Model.Nov20Tot)
+                    </div>
+                    <div id='dec-group' style='display: none;'>
+                        @CalculateRemaining12(item.Amount, Model.Jan20Tot, Model.Feb20Tot, Model.Mar20Tot, Model.Apr20Tot, Model.May20Tot, Model.Jun20Tot, Model.Jul20Tot, Model.Aug20Tot, Model.Sep20Tot, Model.Oct20Tot, Model.Nov20Tot, Model.Dec20Tot)
+                    </div>
+
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.UploadDT)
+                </td>
+
+                <td>
+                    @if ((await AuthorizationService.AuthorizeAsync(
+                    User, item,
+                    EmployeeOperations.Update)).Succeeded)
+                    {
+                    <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a>
+                    
+                    }
+
+                    @*<a asp-page="./Details" asp-route-id="@item.EmployeeID">Details</a>*@
+
+                    @if ((await AuthorizationService.AuthorizeAsync(
+                    User, item,
+                    EmployeeOperations.Delete)).Succeeded)
+                    {
+                        <text> | </text>
+                    <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<div>
+    Show remaining budget amount up till:
+    <input type="submit" value="Jan" id='jan' />
+    <input type="submit" value="Feb" id='feb' />
+    <input type="submit" value="Mar" id='mar' />
+    <input type="submit" value="Apr" id='apr' />
+    <input type="submit" value="May" id='may' />
+    <input type="submit" value="Jun" id='jun' />
+    <input type="submit" value="Jul" id='jul' />
+    <input type="submit" value="Aug" id='aug' />
+    <input type="submit" value="Sep" id='sep' />
+    <input type="submit" value="Oct" id='oct' />
+    <input type="submit" value="Nov" id='nov' />
+    <input type="submit" value="Dec" id='dec' />
+
+    <p style="color:gray;"><i>(Note: If the amount is not shown, please check the <a href="/Payrolls/Index">payroll</a> page of each month and try again.)</i></p>
+</div>
+
+
+@section Scripts {
+    <script type="text/javascript">
+        $(function () {
+            $('[id*=jan]').on("click", function () {
+                $('[id*=jan-group]').attr('style', 'display: block;');
+                $('[id*=feb-group]').attr('style', 'display: none;');
+                $('[id*=mar-group]').attr('style', 'display: none;');
+                $('[id*=apr-group]').attr('style', 'display: none;');
+                $('[id*=may-group]').attr('style', 'display: none;');
+                $('[id*=jun-group]').attr('style', 'display: none;');
+                $('[id*=jul-group]').attr('style', 'display: none;');
+                $('[id*=aug-group]').attr('style', 'display: none;');
+                $('[id*=sep-group]').attr('style', 'display: none;');
+                $('[id*=oct-group]').attr('style', 'display: none;');
+                $('[id*=nov-group]').attr('style', 'display: none;');
+                $('[id*=dec-group]').attr('style', 'display: none;');
+                return false;
+            });
+        });
+
+        $(function () {
+            $('[id*=feb]').on("click", function () {
+                $('[id*=jan-group]').attr('style', 'display: none;');
+                $('[id*=feb-group]').attr('style', 'display: block;');
+                $('[id*=mar-group]').attr('style', 'display: none;');
+                $('[id*=apr-group]').attr('style', 'display: none;');
+                $('[id*=may-group]').attr('style', 'display: none;');
+                $('[id*=jun-group]').attr('style', 'display: none;');
+                $('[id*=jul-group]').attr('style', 'display: none;');
+                $('[id*=aug-group]').attr('style', 'display: none;');
+                $('[id*=sep-group]').attr('style', 'display: none;');
+                $('[id*=oct-group]').attr('style', 'display: none;');
+                $('[id*=nov-group]').attr('style', 'display: none;');
+                $('[id*=dec-group]').attr('style', 'display: none;');
+                return false;
+            });
+        });
+
+        $(function () {
+            $('[id*=mar]').on("click", function () {
+                $('[id*=jan-group]').attr('style', 'display: none;');
+                $('[id*=feb-group]').attr('style', 'display: none;');
+                $('[id*=mar-group]').attr('style', 'display: block;');
+                $('[id*=apr-group]').attr('style', 'display: none;');
+                $('[id*=may-group]').attr('style', 'display: none;');
+                $('[id*=jun-group]').attr('style', 'display: none;');
+                $('[id*=jul-group]').attr('style', 'display: none;');
+                $('[id*=aug-group]').attr('style', 'display: none;');
+                $('[id*=sep-group]').attr('style', 'display: none;');
+                $('[id*=oct-group]').attr('style', 'display: none;');
+                $('[id*=nov-group]').attr('style', 'display: none;');
+                $('[id*=dec-group]').attr('style', 'display: none;');
+                return false;
+            });
+        });
+
+        $(function () {
+            $('[id*=apr]').on("click", function () {
+                $('[id*=jan-group]').attr('style', 'display: none;');
+                $('[id*=feb-group]').attr('style', 'display: none;');
+                $('[id*=mar-group]').attr('style', 'display: none;');
+                $('[id*=apr-group]').attr('style', 'display: block;');
+                $('[id*=may-group]').attr('style', 'display: none;');
+                $('[id*=jun-group]').attr('style', 'display: none;');
+                $('[id*=jul-group]').attr('style', 'display: none;');
+                $('[id*=aug-group]').attr('style', 'display: none;');
+                $('[id*=sep-group]').attr('style', 'display: none;');
+                $('[id*=oct-group]').attr('style', 'display: none;');
+                $('[id*=nov-group]').attr('style', 'display: none;');
+                $('[id*=dec-group]').attr('style', 'display: none;');
+                return false;
+            });
+        });
+
+        $(function () {
+            $('[id*=may]').on("click", function () {
+                $('[id*=jan-group]').attr('style', 'display: none;');
+                $('[id*=feb-group]').attr('style', 'display: none;');
+                $('[id*=mar-group]').attr('style', 'display: none;');
+                $('[id*=apr-group]').attr('style', 'display: none;');
+                $('[id*=may-group]').attr('style', 'display: block;');
+                $('[id*=jun-group]').attr('style', 'display: none;');
+                $('[id*=jul-group]').attr('style', 'display: none;');
+                $('[id*=aug-group]').attr('style', 'display: none;');
+                $('[id*=sep-group]').attr('style', 'display: none;');
+                $('[id*=oct-group]').attr('style', 'display: none;');
+                $('[id*=nov-group]').attr('style', 'display: none;');
+                $('[id*=dec-group]').attr('style', 'display: none;');
+                return false;
+            });
+        });
+
+        $(function () {
+            $('[id*=jun]').on("click", function () {
+                $('[id*=jan-group]').attr('style', 'display: none;');
+                $('[id*=feb-group]').attr('style', 'display: none;');
+                $('[id*=mar-group]').attr('style', 'display: none;');
+                $('[id*=apr-group]').attr('style', 'display: none;');
+                $('[id*=may-group]').attr('style', 'display: none;');
+                $('[id*=jun-group]').attr('style', 'display: block;');
+                $('[id*=jul-group]').attr('style', 'display: none;');
+                $('[id*=aug-group]').attr('style', 'display: none;');
+                $('[id*=sep-group]').attr('style', 'display: none;');
+                $('[id*=oct-group]').attr('style', 'display: none;');
+                $('[id*=nov-group]').attr('style', 'display: none;');
+                $('[id*=dec-group]').attr('style', 'display: none;');
+                return false;
+            });
+        });
+
+        $(function () {
+            $('[id*=jul]').on("click", function () {
+                $('[id*=jan-group]').attr('style', 'display: none;');
+                $('[id*=feb-group]').attr('style', 'display: none;');
+                $('[id*=mar-group]').attr('style', 'display: none;');
+                $('[id*=apr-group]').attr('style', 'display: none;');
+                $('[id*=may-group]').attr('style', 'display: none;');
+                $('[id*=jun-group]').attr('style', 'display: none;');
+                $('[id*=jul-group]').attr('style', 'display: block;');
+                $('[id*=aug-group]').attr('style', 'display: none;');
+                $('[id*=sep-group]').attr('style', 'display: none;');
+                $('[id*=oct-group]').attr('style', 'display: none;');
+                $('[id*=nov-group]').attr('style', 'display: none;');
+                $('[id*=dec-group]').attr('style', 'display: none;');
+                return false;
+            });
+        });
+
+        $(function () {
+            $('[id*=aug]').on("click", function () {
+                $('[id*=jan-group]').attr('style', 'display: none;');
+                $('[id*=feb-group]').attr('style', 'display: none;');
+                $('[id*=mar-group]').attr('style', 'display: none;');
+                $('[id*=apr-group]').attr('style', 'display: none;');
+                $('[id*=may-group]').attr('style', 'display: none;');
+                $('[id*=jun-group]').attr('style', 'display: none;');
+                $('[id*=jul-group]').attr('style', 'display: none;');
+                $('[id*=aug-group]').attr('style', 'display: block;');
+                $('[id*=sep-group]').attr('style', 'display: none;');
+                $('[id*=oct-group]').attr('style', 'display: none;');
+                $('[id*=nov-group]').attr('style', 'display: none;');
+                $('[id*=dec-group]').attr('style', 'display: none;');
+                return false;
+            });
+        });
+
+        $(function () {
+            $('[id*=sep]').on("click", function () {
+                $('[id*=jan-group]').attr('style', 'display: none;');
+                $('[id*=feb-group]').attr('style', 'display: none;');
+                $('[id*=mar-group]').attr('style', 'display: none;');
+                $('[id*=apr-group]').attr('style', 'display: none;');
+                $('[id*=may-group]').attr('style', 'display: none;');
+                $('[id*=jun-group]').attr('style', 'display: none;');
+                $('[id*=jul-group]').attr('style', 'display: none;');
+                $('[id*=aug-group]').attr('style', 'display: none;');
+                $('[id*=sep-group]').attr('style', 'display: block;');
+                $('[id*=oct-group]').attr('style', 'display: none;');
+                $('[id*=nov-group]').attr('style', 'display: none;');
+                $('[id*=dec-group]').attr('style', 'display: none;');
+                return false;
+            });
+        });
+
+        $(function () {
+            $('[id*=oct]').on("click", function () {
+                $('[id*=jan-group]').attr('style', 'display: none;');
+                $('[id*=feb-group]').attr('style', 'display: none;');
+                $('[id*=mar-group]').attr('style', 'display: none;');
+                $('[id*=apr-group]').attr('style', 'display: none;');
+                $('[id*=may-group]').attr('style', 'display: none;');
+                $('[id*=jun-group]').attr('style', 'display: none;');
+                $('[id*=jul-group]').attr('style', 'display: none;');
+                $('[id*=aug-group]').attr('style', 'display: none;');
+                $('[id*=sep-group]').attr('style', 'display: none;');
+                $('[id*=oct-group]').attr('style', 'display: block;');
+                $('[id*=nov-group]').attr('style', 'display: none;');
+                $('[id*=dec-group]').attr('style', 'display: none;');
+                return false;
+            });
+        });
+
+        $(function () {
+            $('[id*=nov]').on("click", function () {
+                $('[id*=jan-group]').attr('style', 'display: none;');
+                $('[id*=feb-group]').attr('style', 'display: none;');
+                $('[id*=mar-group]').attr('style', 'display: none;');
+                $('[id*=apr-group]').attr('style', 'display: none;');
+                $('[id*=may-group]').attr('style', 'display: none;');
+                $('[id*=jun-group]').attr('style', 'display: none;');
+                $('[id*=jul-group]').attr('style', 'display: none;');
+                $('[id*=aug-group]').attr('style', 'display: none;');
+                $('[id*=sep-group]').attr('style', 'display: none;');
+                $('[id*=oct-group]').attr('style', 'display: none;');
+                $('[id*=nov-group]').attr('style', 'display: block;');
+                $('[id*=dec-group]').attr('style', 'display: none;');
+                return false;
+            });
+        });
+
+        $(function () {
+            $('[id*=dec]').on("click", function () {
+                $('[id*=jan-group]').attr('style', 'display: none;');
+                $('[id*=feb-group]').attr('style', 'display: none;');
+                $('[id*=mar-group]').attr('style', 'display: none;');
+                $('[id*=apr-group]').attr('style', 'display: none;');
+                $('[id*=may-group]').attr('style', 'display: none;');
+                $('[id*=jun-group]').attr('style', 'display: none;');
+                $('[id*=jul-group]').attr('style', 'display: none;');
+                $('[id*=aug-group]').attr('style', 'display: none;');
+                $('[id*=sep-group]').attr('style', 'display: none;');
+                $('[id*=oct-group]').attr('style', 'display: none;');
+                $('[id*=nov-group]').attr('style', 'display: none;');
+                $('[id*=dec-group]').attr('style', 'display: block;');
+                return false;
+            });
+        });
+
+
+
+    </script>
+}
